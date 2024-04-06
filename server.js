@@ -15,6 +15,7 @@ app.use(express.json());
 app.get("/", (req, res) => res.sendFile(__dirname + "/public/index.html"));
 
 app.post("/download-video", async (req, res) => {
+    if (!fs.existsSync(__dirname + "/dist/vids")) fs.mkdirSync(__dirname + "/dist/vids");
     fs.readdir(__dirname + "/dist/vids", (err, files) => {
         if (err) {
             console.error(err);
